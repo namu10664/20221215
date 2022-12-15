@@ -77,11 +77,11 @@ class Hangman():
         그렇지 못하면 실패하여 종료됨. 
         """
         while True:
-            Hangman.print_game_status() # 현재 게임 상태를 먼저 출력해줌. 
-            user_input = Hangman.get_user_input # user_input 을 입력받는 메소드 적용. 
+            Hangman.print_game_status(self) # 현재 게임 상태를 먼저 출력해줌. 
+            user_input = Hangman.get_user_input(self) # user_input 을 입력받는 메소드 적용. 
 
             # Validate the user input
-            if Hangman.is_invalid_letter(user_input): # 플레이어가 입력한 인풋이 유효한 값인지 아닌지. 
+            if Hangman.is_invalid_letter(self, user_input): # 플레이어가 입력한 인풋이 유효한 값인지 아닌지. 
                 print('제대로 입력하라')
                 continue
                 # 아니면, 제대로 입력하라는 메세지 출력하고
@@ -95,8 +95,8 @@ class Hangman():
 
             # when the user_input is a character in word_to_guess
             if user_input in self.word_to_guess:
-                indexes = Hangman.find_indexes(user_input) # 추측한 글자의 인덱스 받기 
-                Hangman.update_progress(user_input, indexes) # 입력받은 글자로 현재 게임 상태 업데이트 
+                indexes = Hangman.find_indexes(self, user_input) # 추측한 글자의 인덱스 받기 
+                Hangman.update_progress(self, user_input, indexes) # 입력받은 글자로 현재 게임 상태 업데이트 
 
                 # If there is no letter to find in the word
                 if not '_' in self.game_progress: # 더이상 맞출 글자가 없으면 
